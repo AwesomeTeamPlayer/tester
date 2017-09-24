@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+
+  tester:
+    build: ./
+    environment:
+      URL: 'ws://ws-frontend:3000'
+      MAX_TIME_SECONDS: 60
+    volumes:
+      - ./:/app

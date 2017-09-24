@@ -2,23 +2,13 @@
 
 let client = require('./client');
 
+const url = process.env.URL;
+const maxTimeSeconds = process.env.MAX_TIME_SECONDS;
+
 async function runTest()
 {
-    await client.connect('wss://echo.websocket.org', 10);
+    await client.connect(url, maxTimeSeconds);
 
-    client.send('hello world 1');
-    client.sendJson({'a':123});
-    client.send('hello world 3');
-    client.send('hello world 4');
-    client.send('hello world 5');
-    client.send('hello world 6');
-
-    console.log(await client.receiveMessage());
-    console.log(await client.receiveJsonMessage());
-    console.log(await client.receiveMessage());
-    console.log(await client.receiveMessage());
-    console.log(await client.receiveMessage());
-    console.log(await client.receiveMessage());
     console.log(await client.receiveMessage());
 
     client.close();
