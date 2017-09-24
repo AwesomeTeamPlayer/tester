@@ -1,17 +1,27 @@
 "use strict";
 
+const tape = require('tape');
+
 let client = require('./client');
 
-const url = process.env.URL;
+const httpUrl = process.env.HTTP_URL;
+const wsUrl = process.env.WS_URL;
+
 const maxTimeSeconds = process.env.MAX_TIME_SECONDS;
 
-async function runTest()
-{
-    await client.connect(url, maxTimeSeconds);
+tape.test('Welcome message', (assert) => {
 
-    console.log(await client.receiveMessage());
+    async function runTest()
+    {
+        await client.connect(wsUrl, maxTimeSeconds);
 
-    client.close();
-}
+        let receivedMessage = await client.receiveMessage();
+        assert.equal('Hello world!', receivedMessage);
 
-runTest();
+        client.close();
+    }
+    runTest();
+
+    assert.end();
+});
+

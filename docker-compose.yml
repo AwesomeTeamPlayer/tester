@@ -5,7 +5,8 @@ services:
   tester:
     build: ./
     environment:
-      URL: 'ws://ws-frontend:3000'
-      MAX_TIME_SECONDS: 60
+      HTTP_URL: 'http://ws-frontend:3000'
+      WS_URL: 'ws://ws-frontend:3000'
+      MAX_TIME_SECONDS: 10
     volumes:
       - ./:/app
