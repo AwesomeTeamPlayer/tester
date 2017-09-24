@@ -5,4 +5,4 @@ WORKDIR /app
 
 RUN npm install
 
-CMD sleep 10 && nodejs /app/run.js
+CMD echo "10 sec to run tests" && sleep 5 && echo "5 sec to run tests" && sleep 5 && nodejs /app/run.js
